@@ -1,3 +1,86 @@
+# OpenCart Automation Installation and Deployment
+
+This project is an [OpenCart] (https://www.opencart.com/) automation installer developed by [https://www.Websoft9.com). The development language is ansible. With this item, you only need to run a command on Linux, you can automate the installation of OpenCart, so that the original complex installation process has no technical threshold.
+
+This project is an open source project with LGPL3.0 open source protocol.
+
+## Configuration requirements
+
+Install this project to ensure that conditions are met:
+
+| Conditions | Details | Remarks |
+| ------------------------------- |
+| Operating System | Centos7.x |
+| AWS, AZURE, Ali Cloud, Huawei Yun, Tencent Cloud | Optional |
+| Private Cloud | KVM, VMware, VirtualBox, OpenStack | Optional |
+| Server configuration | Minimum 1 core 1G, the bandwidth required for installation is not less than 10m | It is recommended to use 100M bandwidth |
+
+##
+
+The core components included are: OpenCart official original or opencart Chinese version + Apache / Nginx + MySQL + PHP
+
+See you more, see: [Parameter Table] (/ DOCS / ZH / STACK-COMPONENTS.MD)
+
+## Do you install the latest version of OpenCart?
+
+This project is installed by downloading [OpenCart source] (https://github.com/opencart/opencart), where the version number is stored in: [main.yml] (/ Roles / OpenCart / defaults / main.yml)
+
+`` `
+# Two release of metadata. The project on OpenCart Github has 180,000 files, not using gitclone
+OpenCART_DISTRIBUTION_META:
+
+  ORIGINAL:
+    Download_URL: "https://github.com/opencart/opencart/releases/download/3.0.3.2/opencart-3.0.3.2.zip"
+    DocumentRoot: "Upload"
+  
+  CHINESE:
+    Download_URL: "https://libs.websoft9.com/apps/opencart/opencart-v36-free-20190715.zip"
+    DocumentRoot: "Upload"
+`` `
+If you want to modify the version number:
+
+- Original: Please check the OpenCart warehouse [RELESES] page, get the download link of OpenCart specified version, then modify [Role / OpenCart / Default / Main .yml] (/ Roles / OpenCart / defaults / main.yml) file in the `Download_URL` variable.
+- Chinese: Please go to the official [Download Center] (https://www.opencart.cn/download # anc "Download, upload it to the role / opencart / files directory of this project, then modify [Main.yml] (/ Roles / OpenCart / Defaults / Main.yml) file in the `Download_url` Volume.
+
+We will check the version regularly and test the availability of official version to ensure that users can install the latest version smoothly.
+
+## Installation Guide
+
+Log in to Linux with root users, run the following ** One-button Automation Installation Command ** can start automation deployment. If there is no root user, run the `sudo su -` command after logging in to Linux with other users, then runs the following script.
+
+`` `
+Wget -n https://Raw.githubuserContent.com/websoft9/ansible-linux/main/scripts/install.sh; bash install.sh -r opencart
+`` `
+
+After the script starts, start the automation installation, if necessary, the user needs to make interactive selection, then patiently wait until the installation is successful.
+
+** Precautions in installation: **
+
+1. Inadvertent operation or changes in the network may cause the SSH connection to be interrupted, the installation will fail, please reinstall
+2. Slow installation, stagnation or no reason, mainly the download problem caused by the network is not (or the speed of the network), please reinstall
+
+For a variety of reasons, it cannot be installed smoothly.
+
+## license
+
+[LGPL-3.0] (/ license.md), Additional Terms: It is not allowed to public on this repository in any Cloud Platform's Marketplace.
+Copyright (c) 2016-present, WebSoft9
+
+## Document
+
+Document link: https://support.Websoft9.com/docs/opencart/en
+
+## faq
+
+- What is the difference between command script deployment and mirror deployment? Please refer to: [Mirror Deployment-VS-Script Deployment] (https://support.websoft9.com/docs/faq/en/bz-product.html# Mirror Deployment - VS - Script Deployment)
+- Does this project support run on ANSIBLE TOWER? stand by
+
+## To do
+
+* Add NGINX Support
+* Add ubuntu18.04, Amazon Linux2 support
+
+---------
 
 # OpenCart 自动化安装与部署
 
